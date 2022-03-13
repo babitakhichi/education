@@ -1,0 +1,85 @@
+<%include header%>
+<body>
+    <div class="main">
+        <header class="header">
+            <div class="container">
+                <div class="col-12">
+                    <div class="col-4 mb-11 logo-set">
+                        <div class="logo"><img src="../image/aware.png" height="50" width="210" /></div>
+
+                    </div>
+
+                    <nav class="mob-menu-icon mb-1">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </nav>
+
+
+                    <nav class="col-8 menu mob-menu pull-right">
+
+                        <nav class="mob-menu-icon"
+                            style="padding: 26px 26px;width: 100%;box-sizing: border-box;border-bottom:2px solid #1565C0; ">
+
+                            <span class="icon-bar slide-icon-menu-color"></span>
+                            <span class="icon-bar slide-icon-menu-color"></span>
+                            <span class="icon-bar slide-icon-menu-color"></span>
+
+                        </nav>
+                        <!-- <div class="menu-item-box center "><a href="#" class="menu_link">Home</a>
+
+                            <div class="sub_cata" style="height: 200px;position: absolute;z-index: 99999;background-color: #000;margin-top: 29px;">
+                                Test sub cata
+                            
+                            </div>
+
+                        </div>-->
+                        <div class="menu-item-box center "><a href="/admin/manageuser" class="menu-link">ManageUser</a></div>
+                        <div class="menu-item-box center "><a href="#team" class="menu-link">Team</a></div>
+                        <div class="menu-item-box center "><a href="#contact" class="menu-link">Contact</a></div>
+                        <div class="menu-item-box center "><a href="/adminlogin" >LogOut</a></div>
+                    </nav>
+                    
+                </div>
+            </div>
+        </header>
+        <div id="page">
+            <center>    
+            <h2>View & Manage Users</h2>
+            
+            <table>
+            <tr>
+            <th>RegID</th>
+            <th>Name</th>    
+            <th>Email</th>
+            <th>City</th>
+            <th>Info</th>
+            <th>Status</th>
+            <th>Action</th>
+            </tr>    
+            <tr><td colspan="10"><hr/></td></tr>
+            <% for(let row of userDetails) { %>
+            <tr>
+            <td><%= row._id%></td>
+            <td><%= row.username%></td>    
+            <td><%= row.email%></td>
+            <td><%= row.city%></td>
+            <td><%= row.info%></td>
+            <td>
+            <% if(row.status==1) { %>    
+            <a href="/admin/manageuserstatus?s=block&regid=<%= row._id %>" style="color:orangered">Block User</a>    
+            <% } else { %>
+            <a href="/admin/manageuserstatus?s=verify&regid=<%= row._id %>" style="color:green">Verify User</a>    
+            <% } %>        
+            </td>
+            <td><a href="/admin/manageuserstatus?s=delete&regid=<%= row._id %>" style="color:red">Delete User</a></td>
+            </tr>
+            <tr><td colspan="10"><hr/></td></tr>
+            <% } %>
+            
+            </table>
+            
+            </center>
+            </div>
+            <b>Welcome Admin : <%= sunm %></b>    
+<%include footer%>
